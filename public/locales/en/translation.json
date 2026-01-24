@@ -1,0 +1,114 @@
+{
+  "app": {
+    "title": "Aion 2 Revenue Recorder",
+    "description": "Manage your Od Energy, Dungeon Runs, and Revenue efficiently.",
+    "reset": "Reset Weekly"
+  },
+  "account": {
+    "overview": "Account Overview",
+    "odEnergy": "Od Energy",
+    "weeklyExpeditionRuns": "Weekly Expedition Runs",
+    "weeklyTranscendenceRuns": "Weekly Transcendence Runs",
+    "totalKinah": "Total Kinah Earned",
+    "revenueStatus": "Revenue Status",
+    "status": {
+      "normal": "Normal Revenue (100%)",
+      "diminished": "Diminished (80%)",
+      "heavilyDiminished": "Heavily Diminished (60%)"
+    },
+    "runs": "Runs",
+    "kinah": "Kinah"
+  },
+  "character": {
+    "title": "Characters",
+    "add": "Add Character",
+    "addModal": {
+      "title": "Add New Character",
+      "name": "Character Name",
+      "namePlaceholder": "Enter name",
+      "class": "Class",
+      "gearScore": "Gear Score",
+      "cancel": "Cancel",
+      "create": "Create"
+    },
+    "card": {
+      "odEnergy": "Od Energy",
+      "overflowEnergy": "Overflow Energy",
+      "totalKinah": "Total Revenue",
+      "actualRevenue": "Actual Revenue",
+      "ratio": "Current Ratio",
+      "energyBought": "Bought Energy",
+      "energyCrafted": "Crafted Energy",
+      "complete": "Complete",
+      "gearScore": "GS",
+      "expedition": "Expedition",
+      "transcendence": "Transcendence",
+      "awakening": "Awakening",
+      "pet": "Pet Dungeon",
+      "recordDungeon": "Record Dungeon"
+    }
+  },
+  "dungeon": {
+    "recordModal": {
+      "title": "Record Dungeon - {{name}}",
+      "type": "Dungeon Type",
+      "difficulty": "Difficulty (Stars)",
+      "layer": "Layer (1-10)",
+      "energyCost": "Energy Cost",
+      "revenue": "Revenue",
+      "diminished": "Diminished (x{{factor}})",
+      "noEnergy": "This dungeon type only records completion count. No Energy deducted.",
+      "notEnoughEnergy": "Not enough Od Energy!",
+      "cancel": "Cancel",
+      "confirm": "Confirm Record",
+      "star": "{{count}} Star"
+    },
+    "types": {
+      "EXPEDITION": "Expedition (Revenue)",
+      "TRANSCENDENCE": "Transcendence (Revenue)",
+      "AWAKENING": "Awakening (Weekly)",
+      "PET": "Pet (Weekly)"
+    }
+  },
+  "classes": {
+    "Templar": "Templar",
+    "Gladiator": "Gladiator",
+    "Assassin": "Assassin",
+    "Ranger": "Ranger",
+    "Sorcerer": "Sorcerer",
+    "Spiritmaster": "Spiritmaster",
+    "Cleric": "Cleric",
+    "Chanter": "Chanter",
+    "Aethertech": "Aethertech",
+    "Gunner": "Gunner",
+    "Bard": "Bard",
+    "Painter": "Painter"
+  },
+  "common": {
+    "loading": "Loading...",
+    "theme": {
+      "switchToLight": "Switch to Light Mode",
+      "switchToDark": "Switch to Dark Mode"
+    },
+    "server": {
+      "selectTitle": "Select Server",
+      "selectDesc": "Please choose your game server to continue",
+      "enter": "Enter Game"
+    },
+    "data": {
+      "title": "Data Management & Cleaning",
+      "close": "Close",
+      "current": "Current Data",
+      "totalLogs": "Total Logs",
+      "characters": "Characters",
+      "startClean": "Start Cleaning",
+      "cleaning": "Cleaning...",
+      "complete": "Cleaning Complete",
+      "duplicates": "Duplicates Removed",
+      "invalidFixed": "Invalid Values Fixed",
+      "orphaned": "Orphaned Logs Removed",
+      "log": "Process Log",
+      "warning": "This process will automatically remove duplicate entries, fix invalid energy values (0-800 range), and remove logs associated with deleted characters. A backup of the state is recommended before proceeding."
+    }
+  },
+  "character": {}

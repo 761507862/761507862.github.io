@@ -1,0 +1,114 @@
+{
+  "app": {
+    "title": "永恒之塔 2 收益记录器",
+    "description": "高效管理您的奥德能量、副本通关次数和收益。",
+    "reset": "重置周常"
+  },
+  "account": {
+    "overview": "账号总览",
+    "odEnergy": "奥德能量",
+    "weeklyExpeditionRuns": "本周远征副本总次数",
+    "weeklyTranscendenceRuns": "本周超越副本总次数",
+    "totalKinah": "累计获得基纳",
+    "revenueStatus": "收益状态",
+    "status": {
+      "normal": "正常收益 (100%)",
+      "diminished": "收益递减 (80%)",
+      "heavilyDiminished": "严重递减 (60%)"
+    },
+    "runs": "次",
+    "kinah": "基纳"
+  },
+  "character": {
+    "title": "角色列表",
+    "add": "添加角色",
+    "addModal": {
+      "title": "添加新角色",
+      "name": "角色名称",
+      "namePlaceholder": "输入名称",
+      "class": "职业",
+      "gearScore": "装分",
+      "cancel": "取消",
+      "create": "创建"
+    },
+    "card": {
+      "odEnergy": "奥德能量",
+      "overflowEnergy": "溢出能量",
+      "totalKinah": "累计收益",
+      "actualRevenue": "实际收益",
+      "ratio": "当前比例",
+      "energyBought": "购买能量",
+      "energyCrafted": "制作能量",
+      "complete": "完成",
+      "gearScore": "装分",
+      "expedition": "远征",
+      "transcendence": "超越",
+      "awakening": "觉醒本",
+      "pet": "宠物本",
+      "recordDungeon": "记录副本"
+    }
+  },
+  "dungeon": {
+    "recordModal": {
+      "title": "记录副本 - {{name}}",
+      "type": "副本类型",
+      "difficulty": "难度 (星级)",
+      "layer": "层数 (1-10)",
+      "energyCost": "能量消耗",
+      "revenue": "预计收益",
+      "diminished": "收益递减 (x{{factor}})",
+      "noEnergy": "此副本类型仅记录次数，不扣除能量。",
+      "notEnoughEnergy": "奥德能量不足！",
+      "cancel": "取消",
+      "confirm": "确认记录",
+      "star": "{{count}} 星"
+    },
+    "types": {
+      "EXPEDITION": "远征 (收益)",
+      "TRANSCENDENCE": "超越 (收益)",
+      "AWAKENING": "觉醒 (周常)",
+      "PET": "宠物 (周常)"
+    }
+  },
+  "classes": {
+    "Templar": "守护星",
+    "Gladiator": "剑星",
+    "Assassin": "杀星",
+    "Ranger": "弓星",
+    "Sorcerer": "魔道星",
+    "Spiritmaster": "精灵星",
+    "Cleric": "治愈星",
+    "Chanter": "护法星",
+    "Aethertech": "机甲星",
+    "Gunner": "枪炮星",
+    "Bard": "吟游星",
+    "Painter": "彩绘星"
+  },
+  "common": {
+    "loading": "加载中...",
+    "theme": {
+      "switchToLight": "切换到浅色模式",
+      "switchToDark": "切换到深色模式"
+    },
+    "server": {
+      "selectTitle": "选择区服",
+      "selectDesc": "请选择您所在的区服以继续",
+      "enter": "进入游戏"
+    },
+    "data": {
+      "title": "数据管理与清洗",
+      "close": "关闭",
+      "current": "当前数据",
+      "totalLogs": "总日志数",
+      "characters": "角色数",
+      "startClean": "开始清洗",
+      "cleaning": "清洗中...",
+      "complete": "清洗完成",
+      "duplicates": "移除重复项",
+      "invalidFixed": "修复无效值",
+      "orphaned": "移除孤儿日志",
+      "log": "处理日志",
+      "warning": "此过程将自动移除重复条目，修复无效能量值（0-800范围），并移除与已删除角色关联的日志。建议在继续之前备份数据。"
+    }
+  }
+}
