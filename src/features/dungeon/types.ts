@@ -3,6 +3,7 @@ export enum DungeonType {
   TRANSCENDENCE = 'TRANSCENDENCE',
   AWAKENING = 'AWAKENING', // No revenue, count only
   PET = 'PET', // No revenue, count only
+  MANUAL_ADJUSTMENT = 'MANUAL_ADJUSTMENT',
 }
 
 export type DungeonDifficulty = 1 | 2 | 3; // Stars for Expedition

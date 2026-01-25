@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useGameStore } from '@/store/useGameStore';
 import { DungeonType } from '../types';
 import { RevenueCalculator } from '../services/revenueCalculator';
-import { Dialog } from '@/shared/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/shared/components/ui/dialog';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input'; // For layer input
 import { Badge } from '@/shared/components/ui/badge';
@@ -96,19 +96,12 @@ export const RecordDungeonModal: React.FC<RecordDungeonModalProps> = ({ isOpen, 
   ];
 
   return (
-    <Dialog
-      isOpen={isOpen}
-      onClose={onClose}
-      title={t('dungeon.recordModal.title', { name: character?.name || 'Unknown' })}
-      footer={
-        <>
-          <Button variant="outline" onClick={onClose}>{t('dungeon.recordModal.cancel')}</Button>
-          <Button onClick={handleRecord} disabled={!canAfford}>
-            {t('dungeon.recordModal.confirm')}
-          </Button>
-        </>
-      }
-    >
+    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{t('dungeon.recordModal.title', { name: character?.name || 'Unknown' })}</DialogTitle>
+        </DialogHeader>
+      
       <div className="space-y-6 py-2">
         {/* Type Selection - Tiles */}
         <div className="space-y-2">
@@ -205,6 +198,14 @@ export const RecordDungeonModal: React.FC<RecordDungeonModalProps> = ({ isOpen, 
           </div>
         )}
       </div>
+
+      <DialogFooter>
+          <Button variant="outline" onClick={onClose}>{t('dungeon.recordModal.cancel')}</Button>
+          <Button onClick={handleRecord} disabled={!canAfford}>
+            {t('dungeon.recordModal.confirm')}
+          </Button>
+      </DialogFooter>
+      </DialogContent>
     </Dialog>
   );
 };

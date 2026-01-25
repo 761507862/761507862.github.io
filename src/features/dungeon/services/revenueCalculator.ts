@@ -1,4 +1,5 @@
 import { DungeonType } from '../types';
+import { DIMINISHING_RETURNS } from '@/config/gameConstants';
 
 export class RevenueCalculator {
   private static readonly EXPEDITION_REVENUE = {
@@ -28,28 +29,11 @@ export class RevenueCalculator {
 
   /**
    * Calculates the diminishing return multiplier based on total weekly runs.
-   * N <= 54: 1.0
-   * 54 < N <= 62: 0.8
-   * N > 62: 0.6
    */
   static getDiminishingMultiplier(currentTotalRuns: number): number {
-    // Note: The rule says "If N <= 54". 
-    // Usually this check applies to the *current* run being added. 
-    // If I have 54 runs, the 55th run (currentTotalRuns = 55) might be subject to the new tier?
-    // User says: "If N <= 54: Actual = Base".
-    // "If 54 < N <= 62: Actual = Base * 0.8".
-    // So if N (current total runs completed including this one? or before this one?)
-    // Usually in games, it's based on the count *before* entering, or the count *of* this run.
-    // "current account weekly total runs (N)".
-    // Let's assume N is the count *after* completion? Or *current* state when checking?
-    // If I have completed 54 runs. My 55th run. N becomes 55.
-    // If N=55, it falls into 54 < N <= 62. So 0.8.
-    // So the 55th run gets 0.8.
-    // This implies N is the count *including the current run*.
-    
-    if (currentTotalRuns <= 54) return 1.0;
-    if (currentTotalRuns <= 62) return 0.8;
-    return 0.6;
+    if (currentTotalRuns <= DIMINISHING_RETURNS.TIER_1_LIMIT) return DIMINISHING_RETURNS.TIER_1_FACTOR;
+    if (currentTotalRuns <= DIMINISHING_RETURNS.TIER_2_LIMIT) return DIMINISHING_RETURNS.TIER_2_FACTOR;
+    return DIMINISHING_RETURNS.TIER_3_FACTOR;
   }
 
   /**

@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Coins } from 'lucide-react';
@@ -6,15 +6,16 @@ import { useGameStore } from '@/store/useGameStore';
 import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
+import { GeneratedIcon } from '@/shared/components/ui/generated-icon';
 
 const ITEMS = [
-  { id: 'wrathful_longing', color: 'bg-red-500' },
-  { id: 'wrathful_will', color: 'bg-blue-500' },
-  { id: 'wrathful_self', color: 'bg-green-500' },
-  { id: 'extraction_stone', color: 'bg-purple-500' },
-  { id: 'aether', color: 'bg-yellow-400' },
-  { id: 'high_purity_aether', color: 'bg-yellow-200' },
-  { id: 'pure_aether', color: 'bg-slate-100 border-2' },
+  { id: 'wrathful_longing' },
+  { id: 'wrathful_will' },
+  { id: 'wrathful_self' },
+  { id: 'extraction_stone' },
+  { id: 'aether' },
+  { id: 'high_purity_aether' },
+  { id: 'pure_aether' },
 ];
 
 const ItemIcon = ({ item, name }: { item: typeof ITEMS[0], name: string }) => {
@@ -36,10 +37,11 @@ const ItemIcon = ({ item, name }: { item: typeof ITEMS[0], name: string }) => {
 
   return (
     <div 
-      className={`w-12 h-12 rounded-lg ${item.color} shadow-md cursor-help relative flex items-center justify-center`}
+      className="w-12 h-12 rounded-lg shadow-md cursor-help relative flex items-center justify-center bg-white dark:bg-slate-800 p-1"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+      <GeneratedIcon id={item.id} />
       {showTooltip && (
         <div className="absolute bottom-full mb-2 px-2 py-1 bg-black text-white text-xs rounded whitespace-nowrap z-50">
           {name}
@@ -62,6 +64,8 @@ export const ItemRevenue = () => {
     const numValue = parseInt(value) || 0;
     updateItemPrice(itemId, numValue);
   };
+
+  const handlePriceFocus = (e: React.FocusEvent<HTMLInputElement>) => e.target.select();
 
   return (
     <div className="container mx-auto p-4 max-w-4xl space-y-6">
@@ -96,6 +100,7 @@ export const ItemRevenue = () => {
                       placeholder="0"
                       value={currentPrices[item.id] || ''}
                       onChange={(e) => handlePriceChange(item.id, e.target.value)}
+                      onFocus={handlePriceFocus}
                       className="h-8"
                     />
                     <span className="text-xs text-muted-foreground whitespace-nowrap">

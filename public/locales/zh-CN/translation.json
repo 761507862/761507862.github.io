@@ -45,7 +45,16 @@
       "transcendence": "超越",
       "awakening": "觉醒本",
       "pet": "宠物本",
-      "recordDungeon": "记录副本"
+      "recordDungeon": "记录副本",
+      "todayRevenue": "今日收益",
+      "totalConsumption": "累计消耗",
+      "todayConsumption": "今日消耗",
+      "editModal": {
+        "title": "编辑 {{stat}}",
+        "cancel": "取消",
+        "save": "保存",
+        "tip": "提示：输入 '100W' 可自动转换为 1,000,000"
+      }
     }
   },
   "dungeon": {
@@ -84,7 +93,22 @@
     "Bard": "吟游星",
     "Painter": "彩绘星"
   },
+  "revenue": {
+    "entry": {
+      "title": "收益/消耗录入",
+      "subtitle_select": "请点击下方角色进行数据录入",
+      "subtitle_char": "正在为 {{name}} 录入数据",
+      "placeholder": "",
+      "tip": "提示：输入 100 表示 100万（1,000,000）"
+    }
+  },
   "common": {
+    "unit": {
+      "wan": "万"
+    },
+    "back": "返回",
+    "cancel": "取消",
+    "save": "保存",
     "loading": "加载中...",
     "theme": {
       "switchToLight": "切换到浅色模式",

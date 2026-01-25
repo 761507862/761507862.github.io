@@ -12,6 +12,16 @@ export interface DungeonLog {
   diminishingFactor: number; // 1.0, 0.8, 0.6
 }
 
+export interface ExpenseLog {
+  id: string;
+  characterId: string;
+  serverId: string;
+  amount: number;
+  timestamp: number;
+  type: 'BUY_ENERGY' | 'CRAFT_ENERGY' | 'MANUAL_ADJUSTMENT';
+  note?: string;
+}
+
 export interface Character {
   id: string;
   serverId: string; // New: Link to server
@@ -21,13 +31,14 @@ export interface Character {
   odEnergy: number; // max 800
   overflowEnergy: number; // max 800, New
   totalKinah: number;
-  // kinahRatio removed from here
+  totalConsumption: number; // New
   weeklyEnergyBought: number; // max 7
   weeklyEnergyCrafted: number; // max 7
   weeklyExpeditionCount: number; // max 35, New
   weeklyTranscendenceCount: number; // max 28, New
   weeklyAwakeningCount: number; // max 3
   weeklyPetCount: number; // max 7
+  isHidden?: boolean; // New: Hide character from dashboard
 }
 
 export interface ServerStats {
@@ -49,6 +60,7 @@ export interface AccountSlice {
   servers: ServerConfig[]; // New: Dynamic server list
   serverStats: Record<string, ServerStats>; // Map serverId -> stats
   logs: DungeonLog[];
+  expenses: ExpenseLog[]; // New
   setSelectedServer: (server: string) => void;
   updateServerName: (serverId: string, name: string) => void; // New
   resetServerName: (serverId: string) => void; // New
@@ -58,12 +70,13 @@ export interface AccountSlice {
   updateServerRatio: (ratio: number) => void;
   updateItemPrice: (itemId: string, price: number) => void; // New
   addLog: (log: DungeonLog) => void;
+  addExpense: (expense: ExpenseLog) => void; // New
   resetWeeklyStats: () => void;
 }
 
 export interface CharacterSlice {
   characters: Character[];
-  addCharacter: (character: Omit<Character, 'id' | 'serverId' | 'weeklyEnergyBought' | 'weeklyEnergyCrafted' | 'weeklyAwakeningCount' | 'weeklyPetCount' | 'odEnergy' | 'totalKinah' | 'overflowEnergy' | 'weeklyExpeditionCount' | 'weeklyTranscendenceCount'>) => void;
+  addCharacter: (character: Omit<Character, 'id' | 'serverId'>) => void;
   removeCharacter: (id: string) => void;
   updateCharacter: (id: string, updates: Partial<Character>) => void;
   incrementCharacterDungeonCount: (id: string, type: DungeonType) => void;

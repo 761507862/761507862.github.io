@@ -45,7 +45,16 @@
       "transcendence": "Transcendence",
       "awakening": "Awakening",
       "pet": "Pet Dungeon",
-      "recordDungeon": "Record Dungeon"
+      "recordDungeon": "Record Dungeon",
+      "todayRevenue": "Today Revenue",
+      "totalConsumption": "Total Consumption",
+      "todayConsumption": "Today Consumption",
+      "editModal": {
+        "title": "Edit {{stat}}",
+        "cancel": "Cancel",
+        "save": "Save",
+        "tip": "Tip: You can input '100W' for 1,000,000"
+      }
     }
   },
   "dungeon": {

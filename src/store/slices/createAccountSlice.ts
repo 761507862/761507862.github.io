@@ -15,6 +15,7 @@ export const createAccountSlice: StateCreator<GameStore, [], [], AccountSlice> =
   servers: DEFAULT_SERVERS, // Initialize with defaults
   serverStats: {}, // Initialize empty map
   logs: [],
+  expenses: [],
   setSelectedServer: (server) => set({ selectedServer: server }),
 
   updateServerName: (serverId, name) => set((state) => ({
@@ -33,7 +34,8 @@ export const createAccountSlice: StateCreator<GameStore, [], [], AccountSlice> =
   
   importCleanedData: (cleanedLogs, cleanedCharacters) => set(() => ({
     logs: cleanedLogs,
-    characters: cleanedCharacters
+    characters: cleanedCharacters,
+    expenses: [] // Should ideally import expenses too, but keeping it simple for now
   })),
 
   incrementWeeklyRuns: () => set((state) => {
@@ -66,7 +68,7 @@ export const createAccountSlice: StateCreator<GameStore, [], [], AccountSlice> =
 
   updateServerRatio: (ratio) => set((state) => {
     if (!state.selectedServer) return state;
-    const currentStats = state.serverStats[state.selectedServer] || { weeklyRuns: 0, weeklyTranscendenceRuns: 0, kinahRatio: 1.0, itemPrices: {} };
+    const currentStats = state.serverStats[state.selectedServer] || { weeklyRuns: 0, weeklyTranscendenceRuns: 0, kinahRatio: 1.0 };
     return {
       serverStats: {
         ...state.serverStats,
@@ -80,7 +82,7 @@ export const createAccountSlice: StateCreator<GameStore, [], [], AccountSlice> =
 
   updateItemPrice: (itemId, price) => set((state) => {
     if (!state.selectedServer) return state;
-    const currentStats = state.serverStats[state.selectedServer] || { weeklyRuns: 0, weeklyTranscendenceRuns: 0, kinahRatio: 1.0, itemPrices: {} };
+    const currentStats = state.serverStats[state.selectedServer] || { weeklyRuns: 0, weeklyTranscendenceRuns: 0, kinahRatio: 1.0 };
     const currentPrices = currentStats.itemPrices || {};
     return {
       serverStats: {
@@ -101,6 +103,15 @@ export const createAccountSlice: StateCreator<GameStore, [], [], AccountSlice> =
     characters: state.characters.map(c => 
       c.id === log.characterId 
         ? { ...c, totalKinah: (c.totalKinah || 0) + (log.revenue || 0) } 
+        : c
+    )
+  })),
+
+  addExpense: (expense) => set((state) => ({
+    expenses: [{...expense, serverId: state.selectedServer || 'unknown'}, ...state.expenses],
+    characters: state.characters.map(c => 
+      c.id === expense.characterId
+        ? { ...c, totalConsumption: (c.totalConsumption || 0) + (expense.amount || 0) }
         : c
     )
   })),
