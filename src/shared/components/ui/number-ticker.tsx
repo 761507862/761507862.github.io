@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 
 interface NumberTickerProps {
   value: number;
-  direction?: "up" | "down";
   className?: string;
   delay?: number; // delay in seconds
   decimalPlaces?: number;
@@ -16,7 +15,6 @@ interface NumberTickerProps {
 
 export default function NumberTicker({
   value,
-  direction = "up",
   delay = 0,
   className,
   decimalPlaces = 0,

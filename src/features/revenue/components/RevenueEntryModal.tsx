@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useGameStore } from '@/store/useGameStore';
 import { Button } from '@/shared/components/ui/button';
@@ -145,14 +145,14 @@ export const RevenueEntryModal = ({ isOpen, onClose }: RevenueEntryModalProps) =
               </div>
             </div>
 
-            <DialogFooter className="mt-6">
+            <div className="mt-6 flex items-center justify-end gap-2 p-6 pt-0">
               <Button variant="outline" onClick={() => setSelectedCharId(null)}>
                 {t('common.cancel')}
               </Button>
               <Button onClick={handleSubmit} className="min-w-[100px]">
                 {t('common.save')}
               </Button>
-            </DialogFooter>
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 py-4">
