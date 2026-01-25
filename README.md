@@ -50,6 +50,22 @@ Modern React Application for tracking Aion 2 gameplay resources and dungeon reve
 - **`src/shared`**: Reusable UI components and hooks.
 - **`src/lib`**: Utilities.
 
+## Deployment
+
+### Option 1: Cloudflare Pages (Recommended for China)
+1. Log in to [Cloudflare Dashboard](https://dash.cloudflare.com/).
+2. Navigate to **Workers & Pages** > **Create Application** > **Pages** > **Connect to Git**.
+3. Select this repository (`Aion2`).
+4. Select **Vite** as the framework preset.
+5. Click **Save and Deploy**.
+
+### Option 2: GitHub Pages
+This repository includes a GitHub Action to automatically deploy to GitHub Pages.
+1. Go to your repository **Settings**.
+2. Navigate to **Pages** sidebar menu.
+3. Under **Build and deployment** > **Source**, select **GitHub Actions**.
+4. The site will be deployed to `https://<your-username>.github.io/Aion2/` after the next push.
+
 ## License
 
 Private Project.
