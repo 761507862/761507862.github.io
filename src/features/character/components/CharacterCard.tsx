@@ -9,6 +9,7 @@ import { Progress } from '@/shared/components/ui/progress';
 import { Trash2, Shield, Sword, Zap, Coins, Check } from 'lucide-react';
 import { Input } from '@/shared/components/ui/input';
 import { motion } from 'framer-motion';
+import { formatKinah } from '@/lib/utils';
 
 interface CharacterCardProps {
   character: Character;
@@ -17,7 +18,7 @@ interface CharacterCardProps {
 
 export const CharacterCard: React.FC<CharacterCardProps> = ({ character, onRecordDungeon }) => {
   const { t } = useTranslation();
-  const { updateCharacter, removeCharacter, craftEnergy, buyEnergy } = useGameStore();
+  const { updateCharacter, removeCharacter, craftEnergy, buyEnergy, selectedServer, serverStats } = useGameStore();
   const [isEditingGear, setIsEditingGear] = useState(false);
   const [tempGearScore, setTempGearScore] = useState(character.gearScore || 0);
   const [tempOdEnergy, setTempOdEnergy] = useState(character.odEnergy || 0);
@@ -30,12 +31,30 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, onRecor
     setTempGearScore(character.gearScore || 0);
   }, [character.odEnergy, character.overflowEnergy, character.gearScore]);
 
-  // Format Kinah with W unit
-  const formatKinah = (amount: number) => {
-    if (amount >= 10000) {
-      return `${(amount / 10000).toFixed(2).replace(/\.00$/, '')}W`;
+  const handleBuyEnergy = () => {
+    buyEnergy(character.id, 700000);
+  };
+
+  const handleCraftEnergy = () => {
+    const prices = selectedServer && serverStats[selectedServer]?.itemPrices 
+      ? serverStats[selectedServer].itemPrices 
+      : {};
+    
+    const { aether, high_purity_aether, pure_aether } = prices;
+
+    // Check if prices are set (assuming 0 is a valid price, so check for undefined)
+    // Actually prompt implies "filled in", so undefined check is correct.
+    if (
+        aether === undefined || 
+        high_purity_aether === undefined || 
+        pure_aether === undefined
+    ) {
+        alert(t('items.missingPrices'));
+        return;
     }
-    return amount.toLocaleString();
+
+    const cost = (aether * 25 + high_purity_aether * 5 + pure_aether * 5 + 50000) * 7;
+    craftEnergy(character.id, cost);
   };
 
   const handleGearScoreBlur = () => {
@@ -159,7 +178,7 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, onRecor
                     variant="outline" 
                     size="sm" 
                     className="h-6 px-2 text-xs" 
-                    onClick={() => buyEnergy(character.id)} 
+                    onClick={handleBuyEnergy} 
                     disabled={character.weeklyEnergyBought >= 7}
                   >
                     <Check className="h-3 w-3 mr-1" /> {t('character.card.complete')}
@@ -179,7 +198,7 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, onRecor
                     variant="outline" 
                     size="sm" 
                     className="h-6 px-2 text-xs" 
-                    onClick={() => craftEnergy(character.id)} 
+                    onClick={handleCraftEnergy} 
                     disabled={character.weeklyEnergyCrafted >= 7}
                   >
                     <Check className="h-3 w-3 mr-1" /> {t('character.card.complete')}

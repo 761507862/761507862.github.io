@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui
 import { Input } from '@/shared/components/ui/input';
 import { Activity, Coins } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { formatKinah } from '@/lib/utils';
 
 export const AccountDashboard: React.FC = () => {
   const { t } = useTranslation();
@@ -47,14 +48,6 @@ export const AccountDashboard: React.FC = () => {
 
   const drStatus = getDRStatus(multiplier);
   const transDrStatus = getDRStatus(transcendenceMultiplier);
-
-  // Format Kinah with W unit helper
-  const formatKinah = (amount: number) => {
-    if (amount >= 10000) {
-      return `${(amount / 10000).toFixed(2).replace(/\.00$/, '')}W`;
-    }
-    return amount.toLocaleString();
-  };
 
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-8">

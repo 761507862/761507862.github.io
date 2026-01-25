@@ -110,5 +110,20 @@
       "log": "处理日志",
       "warning": "此过程将自动移除重复条目，修复无效能量值（0-800范围），并移除与已删除角色关联的日志。建议在继续之前备份数据。"
     }
+  },
+  "items": {
+    "title": "物品收益",
+    "configure": "配置物品价格",
+    "wrathful_longing": "愤怒思念",
+    "wrathful_will": "愤怒意志",
+    "wrathful_self": "愤怒自我",
+    "extraction_stone": "达人最上级提炼石",
+    "aether": "奥德",
+    "high_purity_aether": "高纯度的奥德",
+    "pure_aether": "纯净的奥德",
+    "price": "价格",
+    "save": "保存",
+    "missingPrices": "请先配置奥德类物品的价格！",
+    "goConfigure": "前往配置"
   }
 }

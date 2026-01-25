@@ -58,23 +58,23 @@ export const createCharacterSlice: StateCreator<GameStore, [], [], CharacterSlic
       c.id === id ? { ...c, odEnergy: Math.max(0, c.odEnergy - amount) } : c
     ),
   })),
-  craftEnergy: (id) => set((state) => ({
+  craftEnergy: (id, cost) => set((state) => ({
     characters: state.characters.map((c) => {
       if (c.id !== id) return c;
       return {
         ...c,
         weeklyEnergyCrafted: 7, // Immediately reach limit
-        // odEnergy: Math.min(800, c.odEnergy + 80) // Decoupled
+        totalKinah: (c.totalKinah || 0) - cost
       };
     }),
   })),
-  buyEnergy: (id) => set((state) => ({
+  buyEnergy: (id, cost) => set((state) => ({
     characters: state.characters.map((c) => {
       if (c.id !== id) return c;
       return {
         ...c,
         weeklyEnergyBought: 7, // Immediately reach limit
-        // odEnergy: Math.min(800, c.odEnergy + 40) // Decoupled
+        totalKinah: (c.totalKinah || 0) - cost
       };
     }),
   })),

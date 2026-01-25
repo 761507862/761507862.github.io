@@ -66,13 +66,31 @@ export const createAccountSlice: StateCreator<GameStore, [], [], AccountSlice> =
 
   updateServerRatio: (ratio) => set((state) => {
     if (!state.selectedServer) return state;
-    const currentStats = state.serverStats[state.selectedServer] || { weeklyRuns: 0, weeklyTranscendenceRuns: 0, kinahRatio: 1.0 };
+    const currentStats = state.serverStats[state.selectedServer] || { weeklyRuns: 0, weeklyTranscendenceRuns: 0, kinahRatio: 1.0, itemPrices: {} };
     return {
       serverStats: {
         ...state.serverStats,
         [state.selectedServer]: {
           ...currentStats,
           kinahRatio: ratio
+        }
+      }
+    };
+  }),
+
+  updateItemPrice: (itemId, price) => set((state) => {
+    if (!state.selectedServer) return state;
+    const currentStats = state.serverStats[state.selectedServer] || { weeklyRuns: 0, weeklyTranscendenceRuns: 0, kinahRatio: 1.0, itemPrices: {} };
+    const currentPrices = currentStats.itemPrices || {};
+    return {
+      serverStats: {
+        ...state.serverStats,
+        [state.selectedServer]: {
+          ...currentStats,
+          itemPrices: {
+            ...currentPrices,
+            [itemId]: price
+          }
         }
       }
     };

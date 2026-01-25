@@ -33,7 +33,8 @@ export interface Character {
 export interface ServerStats {
   weeklyRuns: number;
   weeklyTranscendenceRuns: number;
-  kinahRatio: number; // New: Global ratio per server
+  kinahRatio: number; // Global ratio per server
+  itemPrices: Record<string, number>; // New: Item prices per server
 }
 
 export interface ServerConfig {
@@ -54,7 +55,8 @@ export interface AccountSlice {
   importCleanedData: (cleanedLogs: DungeonLog[], cleanedCharacters: Character[]) => void; // New
   incrementWeeklyRuns: () => void;
   incrementWeeklyTranscendenceRuns: () => void;
-  updateServerRatio: (ratio: number) => void; // New
+  updateServerRatio: (ratio: number) => void;
+  updateItemPrice: (itemId: string, price: number) => void; // New
   addLog: (log: DungeonLog) => void;
   resetWeeklyStats: () => void;
 }
@@ -68,8 +70,8 @@ export interface CharacterSlice {
   // New actions
   addCharacterEnergy: (id: string, amount: number) => void;
   consumeCharacterEnergy: (id: string, amount: number) => void;
-  craftEnergy: (id: string) => void; // +80 energy, increment crafted count
-  buyEnergy: (id: string) => void; // +40 energy, increment bought count
+  craftEnergy: (id: string, cost: number) => void; // +80 energy, increment crafted count, deduct cost
+  buyEnergy: (id: string, cost: number) => void; // +40 energy, increment bought count, deduct cost
 }
 
 export type GameStore = AccountSlice & CharacterSlice;

@@ -111,4 +111,19 @@
       "warning": "This process will automatically remove duplicate entries, fix invalid energy values (0-800 range), and remove logs associated with deleted characters. A backup of the state is recommended before proceeding."
     }
   },
-  "character": {}
+  "items": {
+    "title": "Item Revenue",
+    "configure": "Configure Item Prices",
+    "wrathful_longing": "Wrathful Longing",
+    "wrathful_will": "Wrathful Will",
+    "wrathful_self": "Wrathful Self",
+    "extraction_stone": "Master's Supreme Extraction Stone",
+    "aether": "Aether",
+    "high_purity_aether": "High Purity Aether",
+    "pure_aether": "Pure Aether",
+    "price": "Price",
+    "save": "Save",
+    "missingPrices": "Please configure prices for Aether items first!",
+    "goConfigure": "Go to Configure"
+  }
+}
