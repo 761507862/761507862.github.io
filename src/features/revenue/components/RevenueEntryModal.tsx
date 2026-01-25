@@ -4,7 +4,7 @@ import { useGameStore } from '@/store/useGameStore';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
 import { Shield, ArrowLeft, Coins, Activity } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogDescription } from '@/shared/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/shared/components/ui/dialog';
 import { DungeonType } from '@/features/dungeon/types';
 
 interface RevenueEntryModalProps {
