@@ -29,6 +29,7 @@ export const RecordDungeonModal: React.FC<RecordDungeonModalProps> = ({ isOpen, 
   
   const character = characters.find(c => c.id === characterId);
   const odEnergy = character?.odEnergy || 0;
+  const overflowEnergy = character?.overflowEnergy || 0;
   
   // Reset state when opening
   useEffect(() => {
@@ -86,7 +87,7 @@ export const RecordDungeonModal: React.FC<RecordDungeonModalProps> = ({ isOpen, 
     onClose();
   };
 
-  const canAfford = !isRevenueDungeon || odEnergy >= 80;
+  const canAfford = !isRevenueDungeon || (odEnergy + overflowEnergy) >= 80;
 
   const dungeonTypes = [
     { type: DungeonType.EXPEDITION, label: t('dungeon.types.EXPEDITION'), icon: Map },
@@ -164,9 +165,16 @@ export const RecordDungeonModal: React.FC<RecordDungeonModalProps> = ({ isOpen, 
               <span className="text-sm text-muted-foreground flex items-center">
                 <Zap className="h-4 w-4 mr-1 text-yellow-500" /> {t('dungeon.recordModal.energyCost')}
               </span>
-              <span className={cn("font-bold", !canAfford && "text-destructive")}>
-                80
-              </span>
+              <div className="text-right">
+                <span className={cn("font-bold", !canAfford && "text-destructive")}>
+                  80
+                </span>
+                {canAfford && odEnergy < 80 && (
+                  <span className="text-xs text-orange-500 block">
+                    ({t('character.card.overflowEnergy')}: {80 - odEnergy})
+                  </span>
+                )}
+              </div>
             </div>
             
             <div className="flex justify-between items-center">

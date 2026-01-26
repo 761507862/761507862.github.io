@@ -55,6 +55,17 @@ export interface ServerConfig {
   isCustom?: boolean;
 }
 
+export interface SoundSettings {
+  enabled: boolean;
+  volume: number; // 0-1
+}
+
+export interface SettingsSlice {
+  sound: SoundSettings;
+  setSoundEnabled: (enabled: boolean) => void;
+  setSoundVolume: (volume: number) => void;
+}
+
 export interface AccountSlice {
   selectedServer: string | null;
   servers: ServerConfig[]; // New: Dynamic server list
@@ -87,4 +98,4 @@ export interface CharacterSlice {
   buyEnergy: (id: string, cost: number) => void; // +40 energy, increment bought count, deduct cost
 }
 
-export type GameStore = AccountSlice & CharacterSlice;
+export type GameStore = AccountSlice & CharacterSlice & SettingsSlice;

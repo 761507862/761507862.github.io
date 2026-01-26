@@ -7,16 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/shared/components/ui
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
 import { GeneratedIcon } from '@/shared/components/ui/generated-icon';
-
-const ITEMS = [
-  { id: 'wrathful_longing' },
-  { id: 'wrathful_will' },
-  { id: 'wrathful_self' },
-  { id: 'extraction_stone' },
-  { id: 'aether' },
-  { id: 'high_purity_aether' },
-  { id: 'pure_aether' },
-];
+import { ITEMS } from './constants';
 
 const ItemIcon = ({ item, name }: { item: typeof ITEMS[0], name: string }) => {
   const [showTooltip, setShowTooltip] = useState(false);

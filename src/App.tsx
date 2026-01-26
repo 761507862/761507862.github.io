@@ -9,15 +9,18 @@ import { DataManagement } from './features/data-management/DataManagement';
 import { ItemRevenue } from './features/items/ItemRevenue';
 import { Button } from './shared/components/ui/button';
 import { useGameStore } from './store/useGameStore';
-import { RotateCcw, Server, Database, Coins, Calendar, Banknote } from 'lucide-react';
+import { RotateCcw, Server, Database, Coins, Calendar, Banknote, Volume2, VolumeX } from 'lucide-react';
 import { LanguageSwitcher } from './shared/components/LanguageSwitcher';
 import { ThemeSwitcher } from './shared/components/ThemeSwitcher';
 import { ReloadPrompt } from './shared/components/ReloadPrompt';
 import GridPattern from './shared/components/ui/grid-pattern';
 import { cn } from './lib/utils';
+import { useSound } from './lib/sound';
 
 import { RevenueEntryModal } from './features/revenue/components/RevenueEntryModal';
+import { ItemRecordModal } from './features/items/components/ItemRecordModal';
 import { getDisplayDateString } from './lib/dateUtils';
+import { ShoppingBag } from 'lucide-react';
 
 function Dashboard() {
   const { t } = useTranslation();
@@ -25,8 +28,10 @@ function Dashboard() {
   const [recordModalOpen, setRecordModalOpen] = useState(false);
   const [dataManagementOpen, setDataManagementOpen] = useState(false);
   const [revenueEntryOpen, setRevenueEntryOpen] = useState(false);
+  const [isItemRecordOpen, setIsItemRecordOpen] = useState(false);
   const [selectedCharacterId, setSelectedCharacterId] = useState<string | null>(null);
-  const { resetWeeklyStats, selectedServer, setSelectedServer, servers } = useGameStore();
+  const { resetWeeklyStats, selectedServer, setSelectedServer, servers, sound, setSoundEnabled } = useGameStore();
+  const { play } = useSound();
   const [currentDate, setCurrentDate] = useState('');
 
   useEffect(() => {
@@ -76,6 +81,18 @@ function Dashboard() {
               <Server className="mr-2 h-4 w-4" /> {currentServerName}
             </Button>
             <div className="h-4 w-[1px] bg-border mx-1 hidden md:block" />
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={() => {
+                setSoundEnabled(!sound.enabled);
+                if (!sound.enabled) play('toggle'); // Play sound when enabling
+              }} 
+              title={sound.enabled ? t('settings.sound.title') + ": " + t('settings.sound.enable') : t('settings.sound.title')}
+              disableSound // Handle manually
+            >
+              {sound.enabled ? <Volume2 className="h-4 w-4" /> : <VolumeX className="h-4 w-4 text-muted-foreground" />}
+            </Button>
             <ThemeSwitcher />
             <LanguageSwitcher />
             <Button variant="ghost" size="icon" onClick={() => setDataManagementOpen(true)} title="Data Management">
@@ -105,10 +122,16 @@ function Dashboard() {
         <section>
           <div className="flex items-center gap-4 mb-4">
             <h2 className="text-xl font-semibold">{t('character.title')}</h2>
-            <Button variant="ghost" size="sm" onClick={() => setRevenueEntryOpen(true)} className="text-muted-foreground hover:text-primary gap-2">
-              <Banknote className="h-4 w-4" />
-              {t('revenue.entry.title')}
-            </Button>
+            <div className="flex gap-2">
+              <Button variant="ghost" size="sm" onClick={() => setRevenueEntryOpen(true)} className="text-muted-foreground hover:text-primary gap-2">
+                <Banknote className="h-4 w-4" />
+                {t('revenue.entry.title')}
+              </Button>
+              <Button variant="ghost" size="sm" onClick={() => setIsItemRecordOpen(true)} className="text-muted-foreground hover:text-primary gap-2">
+                <ShoppingBag className="h-4 w-4" />
+                {t('items.recordBtn')}
+              </Button>
+            </div>
           </div>
           <CharacterGrid onRecordDungeon={handleOpenRecord} />
         </section>
@@ -129,6 +152,11 @@ function Dashboard() {
       <RevenueEntryModal 
         isOpen={revenueEntryOpen}
         onClose={() => setRevenueEntryOpen(false)}
+      />
+
+      <ItemRecordModal 
+        isOpen={isItemRecordOpen} 
+        onClose={() => setIsItemRecordOpen(false)} 
       />
       
       <ReloadPrompt />

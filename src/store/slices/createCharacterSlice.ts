@@ -56,9 +56,25 @@ export const createCharacterSlice: StateCreator<GameStore, [], [], CharacterSlic
     ),
   })),
   consumeCharacterEnergy: (id, amount) => set((state) => ({
-    characters: state.characters.map((c) => 
-      c.id === id ? { ...c, odEnergy: Math.max(0, c.odEnergy - amount) } : c
-    ),
+    characters: state.characters.map((c) => {
+      if (c.id !== id) return c;
+      const currentOd = c.odEnergy || 0;
+      const currentOverflow = c.overflowEnergy || 0;
+      
+      let newOd = currentOd - amount;
+      let newOverflow = currentOverflow;
+
+      if (newOd < 0) {
+        newOverflow += newOd; // Subtract the deficit from overflow
+        newOd = 0;
+      }
+
+      return { 
+        ...c, 
+        odEnergy: Math.max(0, newOd),
+        overflowEnergy: Math.max(0, newOverflow)
+      };
+    }),
   })),
   craftEnergy: (id, cost) => set((state) => {
     // We should ideally call addExpense here, but slice reducers are pure.

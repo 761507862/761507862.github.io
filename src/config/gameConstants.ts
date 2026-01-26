@@ -1,7 +1,7 @@
 // Constants for game mechanics and limits
 
 export const ENERGY_LIMITS = {
-  OD_ENERGY_MAX: 800,
+  OD_ENERGY_MAX: 840,
   OVERFLOW_ENERGY_MAX: 800,
 };
 

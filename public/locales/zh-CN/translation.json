@@ -76,7 +76,8 @@
       "EXPEDITION": "远征 (收益)",
       "TRANSCENDENCE": "超越 (收益)",
       "AWAKENING": "觉醒 (周常)",
-      "PET": "宠物 (周常)"
+      "PET": "宠物 (周常)",
+      "MANUAL_ADJUSTMENT": "物品/其他"
     }
   },
   "classes": {
@@ -109,6 +110,11 @@
     "back": "返回",
     "cancel": "取消",
     "save": "保存",
+    "confirm": "确认",
+    "quantity": "数量",
+    "total": "总计",
+    "date": "日期",
+    "character": "角色",
     "loading": "加载中...",
     "theme": {
       "switchToLight": "切换到浅色模式",
@@ -118,22 +124,25 @@
       "selectTitle": "选择区服",
       "selectDesc": "请选择您所在的区服以继续",
       "enter": "进入游戏"
-    },
-    "data": {
-      "title": "数据管理与清洗",
-      "close": "关闭",
-      "current": "当前数据",
-      "totalLogs": "总日志数",
-      "characters": "角色数",
-      "startClean": "开始清洗",
-      "cleaning": "清洗中...",
-      "complete": "清洗完成",
-      "duplicates": "移除重复项",
-      "invalidFixed": "修复无效值",
-      "orphaned": "移除孤儿日志",
-      "log": "处理日志",
-      "warning": "此过程将自动移除重复条目，修复无效能量值（0-800范围），并移除与已删除角色关联的日志。建议在继续之前备份数据。"
     }
+  },
+  "data": {
+    "title": "数据管理与清洗",
+    "close": "关闭",
+    "current": "当前数据",
+    "totalLogs": "总日志数",
+    "characters": "角色数",
+    "startClean": "开始清洗",
+    "cleaning": "清洗中...",
+    "complete": "清洗完成",
+    "duplicates": "移除重复项",
+    "invalidFixed": "修复无效值",
+    "orphaned": "移除孤儿日志",
+    "log": "处理日志",
+    "warning": "此过程将自动移除重复条目，修复无效能量值（0-800范围），并移除与已删除角色关联的日志。建议在继续之前备份数据。",
+    "overview": "概览",
+    "logs": "日志明细",
+    "noLogs": "暂无日志记录"
   },
   "items": {
     "title": "物品收益",
@@ -148,6 +157,19 @@
     "price": "价格",
     "save": "保存",
     "missingPrices": "请先配置奥德类物品的价格！",
-    "goConfigure": "前往配置"
+    "goConfigure": "前往配置",
+    "recordBtn": "记录物品销售",
+    "recordTitle": "记录物品销售",
+    "selectItem": "选择物品",
+    "unitPrice": "单价",
+    "selectTip": "请选择角色和物品以计算收益"
+  },
+  "settings": {
+    "title": "设置",
+    "sound": {
+      "title": "音效设置",
+      "enable": "开启音效",
+      "volume": "音量"
+    }
   }
 }

@@ -1,6 +1,7 @@
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
+import { useSound } from "@/lib/sound"
 
 // Since I didn't install radix-ui/react-slot, I'll simulate Slot or remove it if I don't use asChild.
 // Actually, for simplicity, I'll remove Slot and asChild for now, or just implement a basic button.
@@ -38,14 +39,33 @@ const buttonVariants = cva(
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
+    disableSound?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, ...props }, ref) => {
+  ({ className, variant, size, onClick, disableSound, onMouseEnter, ...props }, ref) => {
+    const { play } = useSound();
+
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      if (!disableSound) {
+        play('click');
+      }
+      onClick?.(e);
+    };
+
+    const handleMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (!disableSound) {
+            play('hover');
+        }
+        onMouseEnter?.(e);
+    };
+
     return (
       <button
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
+        onClick={handleClick}
+        onMouseEnter={handleMouseEnter}
         {...props}
       />
     )

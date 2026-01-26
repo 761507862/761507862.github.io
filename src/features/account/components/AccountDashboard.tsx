@@ -9,6 +9,9 @@ import { Activity, Coins } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { formatKinah } from '@/lib/utils';
 import { DIMINISHING_RETURNS } from '@/config/gameConstants';
+import { ItemRecordModal } from '@/features/items/components/ItemRecordModal';
+import { Button } from '@/shared/components/ui/button';
+import { ShoppingBag } from 'lucide-react';
 
 export const AccountDashboard: React.FC = () => {
   const { t } = useTranslation();
@@ -165,7 +168,7 @@ export const AccountDashboard: React.FC = () => {
 
       {/* Total Consumption Card */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.15 }}>
-        <Card className="h-full bg-red-50/80 dark:bg-red-950/20 border-red-200 dark:border-red-800 shadow-sm hover:shadow-md transition-shadow">
+        <Card className="h-full bg-red-50/80 dark:bg-red-950/20 border-red-200 dark:border-red-800 shadow-sm hover:shadow-md transition-shadow relative">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-red-700 dark:text-red-300">{t('character.card.totalConsumption')}</CardTitle>
             <Activity className="h-4 w-4 text-red-500" />
@@ -176,6 +179,10 @@ export const AccountDashboard: React.FC = () => {
                 <NumberTicker value={totalConsumption} formatter={formatKinah} className="text-red-700 dark:text-red-400" maxStep={10000} />
               </div>
               <p className="text-xs text-red-600/80 dark:text-red-500/60">{t('account.kinah')}</p>
+            </div>
+            
+            <div className="pt-2 border-t border-red-200/50 dark:border-red-800/50">
+              <span className="text-xs text-red-600/80 dark:text-red-500/80">{t('character.card.totalConsumption')}</span>
             </div>
           </CardContent>
         </Card>

@@ -151,7 +151,7 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, onRecor
                 <div>
                   <CardTitle className="text-lg font-bold text-slate-900 dark:text-slate-100 tracking-tight">{character.name}</CardTitle>
                   <CardDescription className="text-xs font-medium text-primary/80 flex items-center gap-1">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse inline-block" />
                     {t(`classes.${character.class}`)}
                   </CardDescription>
                 </div>

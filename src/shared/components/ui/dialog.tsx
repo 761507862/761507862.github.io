@@ -12,8 +12,8 @@ export const DialogHeader = ({ children, className }: { children: React.ReactNod
   </div>
 );
 
-export const DialogTitle = ({ children }: { children: React.ReactNode }) => (
-  <h3 className="text-lg font-semibold leading-none tracking-tight">{children}</h3>
+export const DialogTitle = ({ children, className }: { children: React.ReactNode; className?: string }) => (
+  <h3 className={`text-lg font-semibold leading-none tracking-tight ${className || ''}`}>{children}</h3>
 );
 
 export const DialogDescription = ({ children, className }: { children: React.ReactNode; className?: string }) => (
@@ -61,11 +61,13 @@ export const Dialog: React.FC<DialogProps> = ({
       if (e.key === 'Escape') handleClose();
     };
     if (isVisible) {
+      // Store original overflow to restore later if needed, though usually '' is fine
       document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleEscape);
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      // Use empty string to remove the inline style completely
+      document.body.style.overflow = '';
       window.removeEventListener('keydown', handleEscape);
     };
   }, [isVisible]);
@@ -82,22 +84,28 @@ export const Dialog: React.FC<DialogProps> = ({
     )
   );
 
+  const maxWidthClass = React.Children.toArray(children).find(
+    (child) => React.isValidElement(child) && child.props.className?.includes('max-w-')
+  ) ? "" : "max-w-lg";
+
   return createPortal(
     <AnimatePresence>
       {isVisible && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 pointer-events-none">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            exit={{ opacity: 0, pointerEvents: 'none' }}
+            transition={{ duration: 0.2 }}
             onClick={handleClose}
-            className="fixed inset-0 bg-background/80 backdrop-blur-sm"
+            className="fixed inset-0 bg-background/80 backdrop-blur-sm pointer-events-auto"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="relative w-full max-w-lg overflow-hidden rounded-lg border bg-card text-card-foreground shadow-lg sm:rounded-xl"
+            exit={{ opacity: 0, scale: 0.95, y: 10, pointerEvents: 'none' }}
+            transition={{ duration: 0.2 }}
+            className={`relative ${maxWidthClass ? 'w-full' : ''} ${maxWidthClass} overflow-hidden rounded-lg border bg-card text-card-foreground shadow-lg sm:rounded-xl pointer-events-auto`}
           >
             {hasComposition ? (
                // New Composition Mode: Render children directly, they contain Header/Content/Footer
