@@ -1,5 +1,5 @@
 import { useGameStore } from '@/store/useGameStore';
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect } from 'react';
 
 // Define available sound types
 export type SoundType = 'click' | 'success' | 'error' | 'toggle' | 'hover';

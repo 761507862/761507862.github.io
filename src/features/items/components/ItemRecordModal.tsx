@@ -216,7 +216,7 @@ export const ItemRecordModal: React.FC<ItemRecordModalProps> = ({ isOpen, onClos
           </div>
         </div>
 
-        <DialogFooter className="sm:justify-between gap-6 border-t pt-6 mt-3">
+        <DialogFooter className="sm:justify-end gap-6 border-t pt-6 mt-3">
           <Button variant="ghost" onClick={handleClose} className="text-xl h-14 px-6 text-muted-foreground hover:text-foreground">
             {t('common.cancel')}
           </Button>

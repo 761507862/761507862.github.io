@@ -9,9 +9,6 @@ import { Activity, Coins } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { formatKinah } from '@/lib/utils';
 import { DIMINISHING_RETURNS } from '@/config/gameConstants';
-import { ItemRecordModal } from '@/features/items/components/ItemRecordModal';
-import { Button } from '@/shared/components/ui/button';
-import { ShoppingBag } from 'lucide-react';
 
 export const AccountDashboard: React.FC = () => {
   const { t } = useTranslation();

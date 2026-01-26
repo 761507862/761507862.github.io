@@ -24,8 +24,8 @@ export const DialogContent = ({ children, className }: { children: React.ReactNo
   <div className={`p-6 pt-0 ${className || ''}`}>{children}</div>
 );
 
-export const DialogFooter = ({ children }: { children: React.ReactNode }) => (
-  <div className="flex items-center justify-end gap-2 p-6 pt-0">{children}</div>
+export const DialogFooter = ({ children, className }: { children: React.ReactNode; className?: string }) => (
+  <div className={`flex items-center justify-end gap-2 p-6 pt-0 ${className || ''}`}>{children}</div>
 );
 
 // --- Main Dialog Component ---
