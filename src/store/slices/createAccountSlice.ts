@@ -2,12 +2,11 @@ import { StateCreator } from 'zustand';
 import { GameStore, AccountSlice } from '../types';
 
 const DEFAULT_SERVERS = [
-  { id: 'siel', name: 'Siel', region: 'NA' },
-  { id: 'israphel', name: 'Israphel', region: 'NA' },
-  { id: 'vaizel', name: 'Vaizel', region: 'NA' },
-  { id: 'triniel', name: 'Triniel', region: 'NA' },
-  { id: 'nezekan', name: 'Nezekan', region: 'NA' },
-  { id: 'zikel', name: 'Zikel', region: 'NA' },
+  { id: '魔1', name: '伊斯拉佩爾', region: 'NA' },
+  { id: '魔3', name: '崔妮爾', region: 'NA' },
+  { id: '魔5', name: '瑪爾庫坦', region: 'NA' },
+  { id: '魔6', name: '阿斯佩爾', region: 'NA' },
+  { id: '魔16', name: '克羅梅德', region: 'NA' },
 ];
 
 export const createAccountSlice: StateCreator<GameStore, [], [], AccountSlice> = (set) => ({
